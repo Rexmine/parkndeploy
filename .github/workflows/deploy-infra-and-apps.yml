@@ -83,11 +83,11 @@ jobs:
         node-version: '18'
 
     - name: Install dependencies
-      run: VITE_APP_VERSION=${{ github.ref_name }} npm install
+      run: npm install
       working-directory: ./frontend
 
     - name: Build the app
-      run: npm run build
+      run: VITE_APP_VERSION=${{ github.ref_name }} npm run build
       working-directory: ./frontend
 
     - name: Upload Frontend Artifact
