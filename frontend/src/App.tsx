@@ -17,6 +17,7 @@ function App() {
   });
 
   console.log(parkingName)
+  console.log(import.meta.env)
 
   return (
     <div className="flex flex-col gap-5 items-center">
