@@ -9,7 +9,7 @@ import ParkingListFilters from "@/components/ParkingList/ParkingListFilters";
 import { useParkingSearchStore } from "@/stores/parkingSearchStore";
 
 function App() {
-  const { parkingName } = useParkingSearchStore();
+  const { parkingName } = useParkingSearchStaore();
 
   const { data, isPending, isError } = useQuery({
     queryKey: [PARKINGS_QUERY_KEY, { parkingName }],

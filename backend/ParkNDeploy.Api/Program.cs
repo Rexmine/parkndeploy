@@ -3,7 +3,7 @@ using ParkNDeploy.Api.Endpoints;
 using ParkNDeploy.Api.Services;
 
 // Create the dependecy injection container
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplicaion.CreateBuilder(args);
 
 // Add OpenAPI document & Swagger capabilities
 builder.Services.AddEndpointsApiExplorer();
