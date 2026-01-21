@@ -35,10 +35,11 @@ jobs:
 
     - name: Update app version
       run: cat package.json | jq '.version = "${{ env.APP_VERSION }}"' > package.json
+      working-directory: ./frontend
 
     - name: Commit and push version change
       run: |
-        git add package.json &&
+        git add ./frontend/package.json &&
         git commit -m "update version ${{ env.APP_VERSION }}" &&
         git push origin HEAD:${{ steps.extract_branch.outputs.branch }}
 
