@@ -42,7 +42,7 @@ jobs:
       run: |
         git add package.json &&
         git commit -m "update version ${{ env.APP_VERSION }}" &&
-        git push origin HEAD:${{ steps.extract_branch.outputs.branch }}
+        git push
 
   deploy_infrastructure:
     runs-on: ubuntu-latest
