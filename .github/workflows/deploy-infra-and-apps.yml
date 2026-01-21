@@ -28,15 +28,15 @@ jobs:
       run: echo "branch=$(git branch -r --contains ${{ github.ref }} --format '%(refname:lstrip=3)')" >> $GITHUB_OUTPUT
       id: extract_branch
 
+    - name: Update app version
+      run: jq '.version = "${{ env.APP_VERSION }}"' package.json > tmp.json && mv tmp.json package.json
+      working-directory: ./frontend
+      
     - name: Set up Git user
       run: |
         git config --local user.name "github-actions[bot]" &&
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-    - name: Update app version
-      run: cat package.json | jq '.version = "${{ env.APP_VERSION }}"' > package.json
-      working-directory: ./frontend
-
+      
     - name: Commit and push version change
       run: |
         git add ./frontend/package.json &&
