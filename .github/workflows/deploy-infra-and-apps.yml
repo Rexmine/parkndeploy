@@ -32,9 +32,6 @@ jobs:
         git config --local user.name "github-actions[bot]" &&
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-    - name: Checkout to target branch
-      run: git checkout ${{ steps.extract_branch.outputs.branch }}
-
     - name: Update app version
       run: cat package.json | jq '.version = "${{ env.APP_VERSION }}"' > package.json
 
@@ -42,7 +39,7 @@ jobs:
       run: |
         git add package.json &&
         git commit -m "update version ${{ env.APP_VERSION }}" &&
-        git push
+        git push origin HEAD:${{ steps.extract_branch.outputs.branch }}
 
   deploy_infrastructure:
     runs-on: ubuntu-latest
