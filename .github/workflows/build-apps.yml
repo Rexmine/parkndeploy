@@ -3,8 +3,6 @@ on:
     tags:
       - '[0-9]+\.[0-9]+\.[0-9]+' 
 
-name: build-apps
-
 env: 
   AZURE_RG_NAME: rg-${{ vars.PROJECT_NAME }}-${{ vars.AZURE_RESOURCE_IDENTIFIER }}
   APP_VERSION: ${{ github.ref_name }}
@@ -91,4 +89,10 @@ jobs:
         path: ./frontend/dist
         if-no-files-found: error
 
+  call_deploy_workflow:
+    needs: 
+      - build_backend
+      - build_frontend
+    uses: ./.github/workflows/deploy-infra-and-apps.yml
+    secrets: inherit
   
